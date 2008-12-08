@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Bubbling Library (YUI Extension) - Accordion Panels using the YUI Panel Skin</title>
+<meta name='author' content='Caridy Patino (caridy at gmail.com)' />
+<link rel="stylesheet" type="text/css" href="../assets/example.css" />
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.6.0/build/container/assets/skins/sam/container.css" />
+<link rel="stylesheet" type="text/css" href="http://js.bubbling-library.com/2.0/build/accordion/assets/accordion.css" />
+<style type="text/css">
+.yui-cms-accordion #panel1.yui-cms-item,
+.yui-cms-accordion #panel2.yui-cms-item,
+.yui-cms-accordion #panel3.yui-cms-item,
+.yui-cms-accordion #panel4.yui-cms-item {
+	visible: false;
+}
+</style>
+<!-- Dependency source files -->
+<script type="text/javascript" src="http://yui.yahooapis.com/2.6.0/build/utilities/utilities.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.6.0/build/container/container-min.js"></script>
+<script type="text/javascript" src="http://js.bubbling-library.com/2.0/build/bubbling/bubbling.js"></script>
+<script type="text/javascript" src="http://js.bubbling-library.com/2.0/build/accordion/accordion.js"></script>
+<script>
+YAHOO.util.Event.onDOMReady(function(){
+	// Instantiating a Panel from markup
+	YAHOO.example.panel1 = new YAHOO.widget.Panel("panel1", {width:"320px", xy: [300, 30], visible:true, constraintoviewport:true});
+	YAHOO.example.panel1.render();
+
+	// Instantiating a Panel from markup
+	YAHOO.example.panel2 = new YAHOO.widget.Panel("panel2", {width:"320px", xy: [700, 50], visible:true, constraintoviewport:true});
+	YAHOO.example.panel2.render();
+
+	// Instantiating a Panel from markup
+	YAHOO.example.panel3 = new YAHOO.widget.Panel("panel3", {width:"320px", xy: [150, 300], visible:true, constraintoviewport:true});
+	YAHOO.example.panel3.render();
+
+	// Instantiating a Panel from markup
+	YAHOO.example.panel4 = new YAHOO.widget.Panel("panel4", {width:"320px", xy: [550, 300], visible:true, constraintoviewport:true});
+	YAHOO.example.panel4.render();
+});
+</script>
+</head>
+<body id="cms-body" class="yui-skin-sam">
+<div id="doc">
+
+	<div class="path">
+	  <a href="http://www.bubbling-library.com/" target="_top">Bubbling Library</a> &gt; <a href="http://www.bubbling-library.com/eng/examples" target="_top">Examples</a>
+	</div>
+
+    <h1>YUI Accordion Widget to create Collapsable and Expandable YUI Panels</h1>
+    <p>The accordion widget use the HTML code (DOM structure) to create the accordion's effects, which means that you can use it with some of the YUI Widgets. This example shows how to use the YUI Panel / Dialog with the accordion control, and also creating dependencies between some of the panels.</p>
+<div class="yui-cms-accordion multiple fast fixIE">
+	    <div id="panel1" class="yui-cms-item yui-panel selected">
+            <div class="hd">Panel 1 (Standalone)</div>
+            <div class="bd">
+              <div class="fixed">
+		        <p>
+    			  <a href="http://www.apple.com/iphone/accessories/"><img src="../lighter/images/iphone_galleryaccess_20070628.jpg" alt="iPhone accessories" class="photo" height="176" width="178"></a><br />
+    			  Apple accessories help you. <a href="http://www.apple.com/iphone/accessories/" class="more">Find out more</a>
+		        </p>
+		      </div>
+            </div>
+            <div class="actions">
+		      <a href="#" class="accordionToggleItem">&nbsp;</a>
+              <a href="#" class="accordionRemoveItem">&nbsp;</a>
+		    </div>
+        </div>
+	    <div id="panel2" class="yui-cms-item yui-panel selected">
+            <div class="hd">Panel 2 (Standalone)</div>
+            <div class="bd">
+              <div class="fixed">
+		        <p>Consectetuer adipiscing elit. Maecenas sit amet metus. Nunc quam elit, posuere nec, auctor in, rhoncus quis, dui. Aliquam erat volutpat. Ut dignissim, massa sit amet dignissim cursus, quam lacus feugiat.Consectetuer adipiscing elit. Maecenas sit amet metus. Nunc quam elit, posuere nec, auctor in, rhoncus quis, dui. </p>
+		        <p>Consectetuer adipiscing elit. Maecenas sit amet metus. Nunc quam elit, posuere nec.</p>
+		      </div>
+            </div>
+            <div class="ft"><a href="#" class="accordionToggleItem">Click here to collapse/expand</a></div>
+            <div class="actions">
+		      <a href="#" class="accordionToggleItem">&nbsp;</a>
+              <a href="#" class="accordionRemoveItem">&nbsp;</a>
+		    </div>
+        </div>
+	</div>
+
+
+	<div class="yui-cms-accordion persistent slow fixIE" rel="bounceOut">
+	    <div id="panel3" class="yui-cms-item yui-panel selected">
+            <div class="hd">Panel 3 (Depending of the Panel 4)</div>
+            <div class="bd">
+              <div class="fixed">
+		        <p>
+    			  <a href="http://www.apple.com/iphone/accessories/"><img src="../lighter/images/iphone_galleryaccess_20070628.jpg" alt="iPhone accessories" class="photo" height="176" width="178"></a><br />
+    			  Apple accessories help you. <a href="http://www.apple.com/iphone/accessories/" class="more">Find out more</a>
+		        </p>
+		      </div>
+            </div>
+            <div class="actions">
+		      <a href="#" class="accordionToggleItem">&nbsp;</a>
+              <a href="#" class="accordionRemoveItem">&nbsp;</a>
+		    </div>
+        </div>
+	    <div id="panel4" class="yui-cms-item yui-panel">
+            <div class="hd">Panel 4 (Depending of the Panel 3)</div>
+            <div class="bd">
+              <div class="fixed">
+		        <p>Consectetuer adipiscing elit. Maecenas sit amet metus. Nunc quam elit, posuere nec, auctor in, rhoncus quis, dui. Aliquam erat volutpat. Ut dignissim, massa sit amet dignissim cursus, quam lacus feugiat.Consectetuer adipiscing elit. Maecenas sit amet metus. Nunc quam elit, posuere nec, auctor in, rhoncus quis, dui. </p>
+		        <p>Consectetuer adipiscing elit. Maecenas sit amet metus. Nunc quam elit, posuere nec.</p>
+		      </div>
+            </div>
+            <div class="ft">Also we can define the footer element for panels</div>
+            <div class="actions">
+		      <a href="#" class="accordionToggleItem">&nbsp;</a>
+              <a href="#" class="accordionRemoveItem">&nbsp;</a>
+		    </div>
+        </div>
+	</div>
+
+  </div>
+
+
+
+<!-- THE EXAMPLE's CODE END HERE, FROM NOW ON IS JUST THE DOCUMENTATION //-->
+
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Bubbling Library (YUI Extension) - Creating items on the fly for existing accordions</title>
+<meta name='author' content='Caridy Patino (caridy at gmail.com)' />
+<link rel="stylesheet" type="text/css" href="../assets/example.css">
+<style type="text/css">
+.myAccordion {
+  float: left;
+  margin-right: 15px;
+}
+  .myAccordion .yui-cms-accordion .yui-cms-item {
+    border: 1px solid #cccccc;
+    width: 200px;
+  }
+    .myAccordion .yui-cms-accordion .yui-cms-item h3 {
+      margin: 0px;
+    }
+        .myAccordion .yui-cms-accordion .yui-cms-item .action {
+          text-decoration: none;
+          width: 16px; height: 16px;
+          margin-left: 3px;
+          float: right;
+        }
+        .myAccordion #mylist-first-accordion.yui-cms-accordion .yui-cms-item .accordionRemoveItem.action {
+          background: url(../images/accordion.gif) no-repeat 0px -400px;
+        }
+        .myAccordion #mylist-second-accordion.yui-cms-accordion .yui-cms-item .accordionRemoveItem.action {
+          background: url(../images/accordion.gif) no-repeat 0px -400px;
+        }
+        .myAccordion #mylist-first-accordion.yui-cms-accordion .yui-cms-item .action.accordionToggleItem {
+          background: url(../images/accordion.gif) no-repeat 0px 0px;
+        }
+        .myAccordion #mylist-first-accordion.yui-cms-accordion .yui-cms-item.selected .action.accordionToggleItem {
+          background: url(../images/accordion.gif) no-repeat 0px -100px;
+        }
+    .myAccordion .yui-cms-accordion .yui-cms-item .bd {
+        height: 0px;
+        overflow: hidden;
+        background-color: #fff;
+    }
+        .myAccordion .yui-cms-accordion .yui-cms-item .bd .fixed {
+            overflow: hidden;
+            padding: 5px;
+        }
+</style>
+<!-- Dependency source files -->
+<script type="text/javascript" src="http://yui.yahooapis.com/2.6.0/build/utilities/utilities.js"></script>
+<script type="text/javascript" src="http://js.bubbling-library.com/2.0/build/bubbling/bubbling.js"></script>
+<script type="text/javascript" src="http://js.bubbling-library.com/2.0/build/accordion/accordion.js"></script>
+</head>
+<body id="cms-body">
+<div id="doc">
+
+	<div class="path">
+	  <a href="http://www.bubbling-library.com/" target="_top">Bubbling Library</a> &gt; <a href="http://www.bubbling-library.com/eng/examples" target="_top">Examples</a>
+	</div>
+
+  <h1>Creating items on the fly for existing accordions</h1>
+  <p>The accordion widget do not use listeners for the trigger elements, which means that you can extend your current HTML markup, and the new elements can be handle by the accordion control automatically. In the same way, you can remove elements from the DOM without worry about memory leaks.</p>
+  <div class="myAccordion">
+	<p>Configuration: <code>multiple</code>, <code>fadeIn/Out</code></p>
+	<div class="yui-cms-accordion multiple fade fixIE" id="mylist-first-accordion">
+		<div class="yui-cms-item">
+		    <h3>
+		      <a href="#" class="accordionRemoveItem action" title="click to remove">&nbsp;</a>
+		      <a href="#" class="accordionToggleItem action" title="click to expand">&nbsp;</a>
+		      Accessories
+		    </h3>
+		    <div class="bd">
+		      <div class="fixed">
+		        <p>
+    			  <a href="http://www.apple.com/iphone/accessories/"><img src="../lighter/images/iphone_galleryaccess_20070628.jpg" alt="iPhone accessories" class="photo" height="176" width="178"></a>
+    			  Apple accessories help you get the most out of your iPhone. <a href="http://www.apple.com/iphone/accessories/" class="more">Find out more</a>
+		        </p>
+		      </div>
+			</div>
+		</div>
+		<div class="yui-cms-item">
+		    <h3>
+		      <a href="#" class="accordionRemoveItem action" title="click to remove">&nbsp;</a>
+		      <a href="#" class="accordionToggleItem action" title="click to expand">&nbsp;</a>
+		      Photos
+		    </h3>
+		    <div class="bd">
+		      <div class="fixed">
+		        <p>
+    			  <a href="http://www.apple.com/iphone/gallery/"><img src="../lighter/images/iphone_galleryphotos_20070622.jpg" alt="iPhone w/ earbuds" class="photo" height="180" width="178"></a>
+    			  No matter how you look at it, the iPhone design is incredible. <a href="http://www.apple.com/iphone/gallery/" class="more">View photos</a>
+		        </p>
+		      </div>
+			</div>
+		</div>
+		<div class="yui-cms-item">
+		    <h3>
+		      <a href="#" class="accordionRemoveItem action" title="click to remove">&nbsp;</a>
+		      <a href="#" class="accordionToggleItem action" title="click to expand">&nbsp;</a>
+		      360 View
+		    </h3>
+		    <div class="bd">
+		      <div class="fixed">
+		        <p>
+    			  <a href="http://www.apple.com/iphone/gallery/360/"><img src="../lighter/images/iphone_gallery360s_20070622.jpg" alt="iPhone with earbuds" class="photo" height="180" width="178"></a>
+    			  Want to take iPhone for a spin? <a href="http://www.apple.com/iphone/gallery/360/" class="more">Watch this</a>
+		        </p>
+		      </div>
+			</div>
+		</div>
+		<div class="yui-cms-item">
+		    <h3>
+		      <a href="#" class="accordionRemoveItem action" title="click to remove">&nbsp;</a>
+		      <a href="#" class="accordionToggleItem action" title="click to expand">&nbsp;</a>
+		      TV Ads
+		    </h3>
+		    <div class="bd">
+		      <div class="fixed">
+		        <p>
+    			  <a href="http://www.apple.com/iphone/ads/"><img src="../lighter/images/iphone_galleryads_20070622.jpg" alt="iPhone w/ earbuds" class="photo" height="180" width="178"></a>
+    			  iPhone shows what it can do in these TV commercials. <a href="http://www.apple.com/iphone/ads/" class="more">View video</a>
+		        </p>
+		      </div>
+			</div>
+		</div>
+	</div>
+  </div>
+
+  <div class="myAccordion">
+	<p>Configuration: <code>multiple</code>, <code>fast</code>, <code>bounceOut</code></p>
+	<div class="yui-cms-accordion multiple fast fixIE" rel="bounceOut" id="mylist-second-accordion">
+		<div class="yui-cms-item">
+		    <h3>
+		      <a href="#" class="accordionRemoveItem action" title="click to remove">&nbsp;</a>
+		      <a href="#" class="accordionToggleItem">Accessories</a>
+		    </h3>
+		    <div class="bd">
+		      <div class="fixed">
+		        <p>
+    			  <a href="http://www.apple.com/iphone/accessories/"><img src="../lighter/images/iphone_galleryaccess_20070628.jpg" alt="iPhone accessories" class="photo" height="176" width="178"></a>
+    			  Apple accessories help you get the most out of your iPhone. <a href="http://www.apple.com/iphone/accessories/" class="more">Find out more</a>
+		        </p>
+		      </div>
+			</div>
+		</div>
+		<div class="yui-cms-item">
+		    <h3>
+		      <a href="#" class="accordionRemoveItem action" title="click to remove">&nbsp;</a>
+		      <a href="#" class="accordionToggleItem">Photos</a>
+		    </h3>
+		    <div class="bd">
+		      <div class="fixed">
+		        <p>
+    			  <a href="http://www.apple.com/iphone/gallery/"><img src="../lighter/images/iphone_galleryphotos_20070622.jpg" alt="iPhone w/ earbuds" class="photo" height="180" width="178"></a>
+    			  No matter how you look at it, the iPhone design is incredible. <a href="http://www.apple.com/iphone/gallery/" class="more">View photos</a>
+		        </p>
+		      </div>
+			</div>
+		</div>
+		<div class="yui-cms-item">
+		    <h3>
+		      <a href="#" class="accordionRemoveItem action" title="click to remove">&nbsp;</a>
+		      <a href="#" class="accordionToggleItem">360 View</a>
+		    </h3>
+		    <div class="bd">
+		      <div class="fixed">
+		        <p>
+    			  <a href="http://www.apple.com/iphone/gallery/360/"><img src="../lighter/images/iphone_gallery360s_20070622.jpg" alt="iPhone with earbuds" class="photo" height="180" width="178"></a>
+    			  Want to take iPhone for a spin? <a href="http://www.apple.com/iphone/gallery/360/" class="more">Watch this</a>
+		        </p>
+		      </div>
+			</div>
+		</div>
+		<div class="yui-cms-item">
+		    <h3>
+		      <a href="#" class="accordionRemoveItem action" title="click to remove">&nbsp;</a>
+		      <a href="#" class="accordionToggleItem">TV Ads</a>
+		    </h3>
+		    <div class="bd">
+		      <div class="fixed">
+		        <p>
+    			  <a href="http://www.apple.com/iphone/ads/"><img src="../lighter/images/iphone_galleryads_20070622.jpg" alt="iPhone w/ earbuds" class="photo" height="180" width="178"></a>
+    			  iPhone shows what it can do in these TV commercials. <a href="http://www.apple.com/iphone/ads/" class="more">View video</a>
+		        </p>
+		      </div>
+			</div>
+		</div>
+	</div>
+  </div>
+
+<!-- CODE FOR INJECTING NEW ELEMENTS //-->
+
+<h1><br/>Is easy to inject new items to an accordion:</h1>
+<textarea id="innerHTMLValue" name="innerHTMLValue" class="actionHighLighting" cols="80" rows="11">
+<div class="yui-cms-item">
+    <h3>
+      <a href="#" class="accordionRemoveItem action" title="click to remove">&nbsp;</a>
+      <a href="#" class="accordionToggleItem">Custom Item Label</a>
+    </h3>
+    <div class="bd">
+      <div class="fixed">
+        <p>Custom Item Body...</p>
+      </div>
+    </div>
+</div>
+</textarea><br/>
+<input type="button" id="actionInjectItem1" value='Inject it in Accordion #1' onclick="YAHOO.util.Dom.get('mylist-first-accordion').innerHTML += YAHOO.util.Dom.get('innerHTMLValue').value;" />
+<input type="button" id="actionInjectItem2" value='Inject it in Accordion #2' onclick="YAHOO.util.Dom.get('mylist-second-accordion').innerHTML += YAHOO.util.Dom.get('innerHTMLValue').value;" />
+
+
+
+
+<!-- THE EXAMPLE's CODE END HERE, FROM NOW ON IS JUST THE DOCUMENTATION //-->
+
+
+</div>
+</body>
+</html>

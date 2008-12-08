@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Bubbling Library (YUI Extension) - Vertical Accordion Control</title>
+<meta name='author' content='Caridy Patino (caridy at gmail.com)' />
+<link rel="stylesheet" type="text/css" href="../assets/example.css">
+<style type="text/css">
+.myAccordion {
+    clear: both;
+    padding: 5px;
+}
+  .myAccordion .yui-cms-accordion .yui-cms-item {
+    border: 1px solid #cccccc;
+    float: left;
+    display: inline;
+    background-color: #fff;
+  }
+  .myAccordion .yui-cms-accordion .yui-cms-item.selected {
+    width: auto;
+  }
+    .myAccordion .yui-cms-accordion .yui-cms-item .accordionToggleItem {
+      width: 17px;
+      height: 17px;
+      display: block;
+      background: url(../images/accordion.gif) no-repeat 0px -200px;
+      text-decoration: none;
+    }
+    .myAccordion .yui-cms-accordion .yui-cms-item.selected .accordionToggleItem {
+      background: url(../images/accordion.gif) no-repeat 0px -300px;
+      opacity: 0.2;
+    }
+    .myAccordion .yui-cms-accordion .yui-cms-item .bd {
+        width: 1px; /* Hack: vertical accordion with width=0 will generate malfunctions in opera and safari */
+        overflow: hidden;
+        background-color: #fff;
+    }
+        /* forcing the expandable area to a fixed width and height, to keep the container size */
+        .myAccordion .yui-cms-accordion .yui-cms-item .bd .fixed {
+            overflow: hidden;
+            width: 200px;
+            height: 250px;
+            padding: 5px;
+        }
+</style>
+<!-- Dependency source files -->
+<script type="text/javascript" src="http://yui.yahooapis.com/2.6.0/build/utilities/utilities.js"></script>
+<script type="text/javascript" src="http://js.bubbling-library.com/2.0/build/bubbling/bubbling.js"></script>
+<script type="text/javascript" src="http://js.bubbling-library.com/2.0/build/accordion/accordion.js"></script>
+</head>
+<body id="cms-body">
+<div id="doc">
+
+	<div class="path">
+	  <a href="http://www.bubbling-library.com/" target="_top">Bubbling Library</a> &gt; <a href="http://www.bubbling-library.com/eng/examples" target="_top">Examples</a>
+	</div>
+
+  <h1>Vertical Accordion Menu (open on click)</h1>
+  <p>The accordion also supports vertical items. This approach is not widely extended, but in case you need it, there it goes... :-)</p>
+  <div class="myAccordion">
+    <p>Configuration: <code>Vertical</code>, <code>Manually</code>, <code>Persistent</code>, <code>slow</code></p>
+	<div class="yui-cms-accordion vertical manually persistent slow fixIE">
+		<div class="yui-cms-item selected">
+			<a href="#" class="accordionToggleItem" title="click to expand">&nbsp;</a>
+		    <div class="bd" style="width: auto;">
+		      <div class="fixed">
+		        <h4>Accessories</h4>
+		        <p>
+    			  <a href="http://www.apple.com/iphone/accessories/"><img src="../lighter/images/iphone_galleryaccess_20070628.jpg" alt="iPhone accessories" height="176" width="178"></a><br />
+    			  Apple accessories help you get the most out of your iPhone. <a href="http://www.apple.com/iphone/accessories/" class="more">Find out more</a>
+		        </p>
+		      </div>
+			</div>
+		</div>
+		<div class="yui-cms-item">
+			<a href="#" class="accordionToggleItem" title="click to expand">&nbsp;</a>
+		    <div class="bd">
+		      <div class="fixed">
+		        <h4>Photos</h4>
+		        <p>
+    			  <a href="http://www.apple.com/iphone/gallery/"><img src="../lighter/images/iphone_galleryphotos_20070622.jpg" alt="iPhone w/ earbuds" height="180" width="178"></a><br />
+    			  No matter how you look at it, the iPhone design is incredible. <a href="http://www.apple.com/iphone/gallery/" class="more">View photos</a>
+		        </p>
+		      </div>
+			</div>
+		</div>
+		<div class="yui-cms-item">
+			<a href="#" class="accordionToggleItem" title="click to expand">&nbsp;</a>
+		    <div class="bd">
+		      <div class="fixed">
+		        <h4>360 View</h4>
+		        <p>
+    			  <a href="http://www.apple.com/iphone/gallery/360/"><img src="../lighter/images/iphone_gallery360s_20070622.jpg" alt="iPhone with earbuds" height="180" width="178"></a><br />
+    			  Want to take iPhone for a spin? <a href="http://www.apple.com/iphone/gallery/360/" class="more">Watch this</a>
+		        </p>
+		      </div>
+			</div>
+		</div>
+		<div class="yui-cms-item">
+			<a href="#" class="accordionToggleItem" title="click to expand">&nbsp;</a>
+		    <div class="bd">
+		      <div class="fixed">
+		        <h4>TV Ads</h4>
+		        <p>
+    			  <a href="http://www.apple.com/iphone/ads/"><img src="../lighter/images/iphone_galleryads_20070622.jpg" alt="iPhone w/ earbuds" height="180" width="178"></a><br />
+    			  iPhone shows what it can do in these TV commercials. <a href="http://www.apple.com/iphone/ads/" class="more">View video</a>
+		        </p>
+		      </div>
+			</div>
+		</div>
+	</div>
+  </div>
+
+  <div class="myAccordion">
+	<p>Configuration: <code>Vertical</code>, <code>Persistent</code>, <code>fadeIn/Out</code></p>
+	<div class="yui-cms-accordion vertical persistent fade fixIE">
+		<div class="yui-cms-item">
+		    <div class="bd">
+		      <div class="fixed">
+		        <h4>Accessories</h4>
+		        <p>
+    			  <a href="http://www.apple.com/iphone/accessories/"><img src="../lighter/images/iphone_galleryaccess_20070628.jpg" alt="iPhone accessories" height="176" width="178"></a><br />
+    			  Apple accessories help you get the most out of your iPhone. <a href="http://www.apple.com/iphone/accessories/" class="more">Find out more</a>
+		        </p>
+		      </div>
+			</div>
+			<a href="#" class="accordionToggleItem" title="click to expand">&nbsp;</a>
+		</div>
+		<div class="yui-cms-item selected">
+		    <div class="bd" style="width: auto;">
+		      <div class="fixed">
+		        <h4>Photos</h4>
+		        <p>
+    			  <a href="http://www.apple.com/iphone/gallery/"><img src="../lighter/images/iphone_galleryphotos_20070622.jpg" alt="iPhone w/ earbuds" height="180" width="178"></a><br />
+    			  No matter how you look at it, the iPhone design is incredible. <a href="http://www.apple.com/iphone/gallery/" class="more">View photos</a>
+		        </p>
+		      </div>
+			</div>
+			<a href="#" class="accordionToggleItem" title="click to expand">&nbsp;</a>
+		</div>
+		<div class="yui-cms-item">
+		    <div class="bd">
+		      <div class="fixed">
+		        <h4>360 View</h4>
+		        <p>
+    			  <a href="http://www.apple.com/iphone/gallery/360/"><img src="../lighter/images/iphone_gallery360s_20070622.jpg" alt="iPhone with earbuds" height="180" width="178"></a><br />
+    			  Want to take iPhone for a spin? <a href="http://www.apple.com/iphone/gallery/360/" class="more">Watch this</a>
+		        </p>
+		      </div>
+			</div>
+			<a href="#" class="accordionToggleItem" title="click to expand">&nbsp;</a>
+		</div>
+		<div class="yui-cms-item">
+		    <div class="bd">
+		      <div class="fixed">
+		        <h4>TV Ads</h4>
+		        <p>
+    			  <a href="http://www.apple.com/iphone/ads/"><img src="../lighter/images/iphone_galleryads_20070622.jpg" alt="iPhone w/ earbuds" height="180" width="178"></a><br />
+    			  iPhone shows what it can do in these TV commercials. <a href="http://www.apple.com/iphone/ads/" class="more">View video</a>
+		        </p>
+		      </div>
+			</div>
+			<a href="#" class="accordionToggleItem" title="click to expand">&nbsp;</a>
+		</div>
+	</div>
+  </div>
+
+
+
+
+<!-- THE EXAMPLE's CODE END HERE, FROM NOW ON IS JUST THE DOCUMENTATION //-->
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Bubbling Library (YUI Extension) - Accordion Control</title>
+<meta name='author' content='Caridy Patino (caridy at gmail.com)' />
+<link rel="stylesheet" type="text/css" href="../assets/example.css" />
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.6.0/build/container/assets/skins/sam/container.css" />
+<link rel="stylesheet" type="text/css" href="http://js.bubbling-library.com/2.0/build/accordion/assets/accordion.css" />
+<style type="text/css">
+.myAccordion {
+  float: left;
+  margin-right: 15px;
+}
+  .myAccordion .yui-cms-accordion .yui-cms-item {
+    width: 200px;
+  }
+    .myAccordion .yui-cms-accordion .yui-cms-item .bd .fixed {
+        height: 230px;
+    }
+
+</style>
+<!-- Dependency source files -->
+<script type="text/javascript" src="http://yui.yahooapis.com/combo?2.6.0/build/utilities/utilities.js&2.5.2/build/json/json-min.js"></script>
+<script type="text/javascript" src="http://js.bubbling-library.com/2.0/build/bubbling/bubbling.js"></script>
+<script type="text/javascript" src="http://js.bubbling-library.com/2.0/build/dispatcher/dispatcher.js"></script>
+<script type="text/javascript" src="http://js.bubbling-library.com/2.0/build/wizard/wizard.js"></script>
+<script type="text/javascript" src="http://js.bubbling-library.com/2.0/build/accordion/accordion.js"></script>
+<script>
+
+YAHOO.Bubbling.on('accordionOpenItem', function (layer, args) {
+  // if the accordion item should be loaded using the WIZARD (AJAX)
+  if (!args[1].flagged && YAHOO.util.Dom.hasClass(args[1].el, 'wizard')) {
+	console.log ('open...');
+	var url = args[1].el.getAttribute('url'),
+		j = args[1].el.getAttribute('params') || '';
+	console.log (1, url, j);
+	try {
+      j = YAHOO.lang.JSON.parse(j);
+	} catch(e) {}
+	if (url) {
+		console.log (2, YAHOO.util.Dom.generateId(args[1].slide));
+		YAHOO.plugin.WizardManager.add (YAHOO.util.Dom.generateId(args[1].slide), {
+		   uri: url,
+		   overheat: true,
+		   dataMask: j,
+		   onLoad: function() {
+		     YAHOO.util.Dom.setStyle(args[1].slide,"height",args[1].slide.scrollHeight+"px");
+			 if(j.onLoad && YAHOO.example.App[j.onLoad]) {
+			    YAHOO.example.App[j.onLoad].apply (j, [args[1].slide]);
+			 }
+		   }
+		});
+	}
+	args[1].flagged = true;
+  }
+});
+
+YAHOO.Bubbling.on('accordionCloseItem', function (layer, args) {
+  // if the accordion item should be loaded using the WIZARD (AJAX)
+  if (!args[1].flagged && YAHOO.util.Dom.hasClass(args[1].el, 'wizard')) {
+    console.log ('close...');
+	args[1].slide.innerHTML = '<div class="fixed">Loading, please wait...</div>';
+	args[1].flagged = true;
+  }
+});
+
+YAHOO.example.App = {
+	methodABC: function (el) {
+		console.log (this, el);
+	}
+};
+
+</script>
+</head>
+<body id="cms-body" class="yui-skin-sam">
+<div id="doc">
+
+	<div class="path">
+	  <a href="http://www.bubbling-library.com/" target="_top">Bubbling Library</a> &gt; <a href="http://www.bubbling-library.com/eng/examples" target="_top">Examples</a>
+	</div>
+
+  <h1>AJAX Accordion Menu (open on click)</h1>
+
+  <div class="myAccordion">
+	<p>Configuration: <code>persistent</code>, <code>fadeIn/Out</code></p>
+	<div class="yui-cms-accordion">
+	    <div class="yui-cms-item yui-panel wizard" url="ajax/accesories.php" params='{param1:"value1", onLoad:"methodABC", param2:"value2"}'>
+            <div class="hd">Accessories</div>
+            <div class="bd">
+              <div class="fixed">Loading, please wait...</div>
+            </div>
+            <div class="actions">
+		      <a href="#" class="accordionToggleItem">&nbsp;</a>
+		    </div>
+		</div>
+	    <div class="yui-cms-item yui-panel wizard" url="ajax/photos.php" params='{param1:"value3", onLoad:"methodABC", param2:"value4"}'>
+            <div class="hd">Photos</div>
+            <div class="bd">
+              <div class="fixed">Loading, please wait...</div>
+			</div>
+            <div class="actions">
+		      <a href="#" class="accordionToggleItem">&nbsp;</a>
+		    </div>
+		</div>
+	</div>
+  </div>
+
+<!-- THE EXAMPLE's CODE END HERE, FROM NOW ON IS JUST THE DOCUMENTATION //-->
+
+</div>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Bubbling Library (YUI Extension) - Hidden Left Panel (Accordion Menu)</title>
+<meta name='author' content='Caridy Patino (caridy at gmail.com)' />
+<link rel="stylesheet" type="text/css" href="../assets/example.css">
+<style type="text/css">
+.myAccordion {
+    clear: both;
+    padding: 5px;
+    width: 450px;
+}
+    .myAccordion .yui-cms-accordion {
+        float: left;
+        position:absolute;
+        background-color: #fff;
+    }
+    .myAccordion .moreinfo {
+        padding-left: 30px;
+    }
+      .myAccordion .yui-cms-accordion .yui-cms-item {
+        border: 1px solid #cccccc;
+        list-style-type: none;
+        float: left;
+        display: inline;
+        width: auto;
+      }
+        .myAccordion .yui-cms-accordion .yui-cms-item .accordionToggleItem {
+          width: 17px;
+          height: 17px;
+          display: block;
+          background: url(../images/accordion.gif) no-repeat 0px -200px;
+          text-decoration: none;
+          float: left;
+        }
+        .myAccordion .yui-cms-accordion .yui-cms-item.selected .accordionToggleItem {
+          background: url(../images/accordion.gif) no-repeat 0px -300px;
+        }
+
+        .myAccordion .yui-cms-accordion .yui-cms-item .bd {
+            width: 0px;
+            overflow: hidden;
+            background-color: #fff;
+        }
+            .myAccordion .yui-cms-accordion .yui-cms-item .bd .fixed {
+                overflow: hidden;
+                width: 200px;
+                height: 250px;
+                padding: 5px;
+            }
+</style>
+<!-- Dependency source files -->
+<script type="text/javascript" src="http://yui.yahooapis.com/2.6.0/build/utilities/utilities.js"></script>
+<script type="text/javascript" src="http://js.bubbling-library.com/2.0/build/bubbling/bubbling.js"></script>
+<script type="text/javascript" src="http://js.bubbling-library.com/2.0/build/accordion/accordion.js"></script>
+</head>
+<body id="cms-body">
+<div id="doc">
+
+	<div class="path">
+	  <a href="http://www.bubbling-library.com/" target="_top">Bubbling Library</a> &gt; <a href="http://www.bubbling-library.com/eng/examples" target="_top">Examples</a>
+	</div>
+
+  <h1>Hidden Left Panel (Accordion Menu) (open on rollover)</h1>
+  <p>The accordion widget is a very extensible component, to expand and collapse DOM elements, you can use it to create hidden panels, horizontal or vertical panels.</p>
+  <div class="myAccordion">
+    <p>Configuration: <code>vertical</code>, <code>rollover</code>, <code>fast</code></p><br/>
+	<div class="yui-cms-accordion vertical rollover fast">
+		<div class="yui-cms-item">
+			<a href="#" class="accordionToggleItem" title="click to expand">&nbsp;</a>
+		    <div class="bd">
+		      <div class="fixed">
+		        <h4>Accessories</h4>
+		        <p>
+    			  <a href="http://www.apple.com/iphone/accessories/"><img src="../lighter/images/iphone_galleryaccess_20070628.jpg" alt="iPhone accessories" height="176" width="178"></a><br />
+    			  Apple accessories help you get the most out of your iPhone. <a href="http://www.apple.com/iphone/accessories/" class="more">Find out more</a>
+		        </p>
+		      </div>
+			</div>
+		</div>
+	</div>
+
+    <div class="moreinfo">
+    	<p>Consectetuer adipiscing elit. Maecenas sit amet metus. Nunc quam elit, posuere nec, auctor in, rhoncus quis, dui. Aliquam erat volutpat. Ut dignissim, massa sit amet dignissim cursus, quam lacus feugiat.Consectetuer adipiscing elit. Maecenas sit amet metus. Nunc quam elit, posuere nec, auctor in, rhoncus quis, dui. </p>
+        <p>Consectetuer adipiscing elit. Maecenas sit amet metus. Nunc quam elit, posuere nec, auctor in, rhoncus quis, dui. Aliquam erat volutpat. Ut dignissim, massa sit amet dignissim cursus, quam lacus feugiat.Consectetuer adipiscing elit. Maecenas sit amet metus. Nunc quam elit, posuere nec, auctor in, rhoncus quis, dui. </p>
+        <p>Consectetuer adipiscing elit. Maecenas sit amet metus. Nunc quam elit, posuere nec, auctor in, rhoncus quis, dui. Aliquam erat volutpat. Ut dignissim, massa sit amet dignissim cursus, quam lacus feugiat.Consectetuer adipiscing elit. Maecenas sit amet metus. Nunc quam elit, posuere nec, auctor in, rhoncus quis, dui. </p>
+    </div>
+
+  </div>
+
+  <h1>Hidden Left Panel (Accordion Menu) (open on click)</h1>
+
+  <div class="myAccordion">
+    <p>Configuration: <code>vertical</code>, <code>fast</code></p><br/>
+	<div class="yui-cms-accordion vertical fast">
+		<div class="yui-cms-item">
+			<a href="#" class="accordionToggleItem" title="click to expand">&nbsp;</a>
+		    <div class="bd">
+		      <div class="fixed">
+		        <h4>Accessories</h4>
+		        <p>
+    			  <a href="http://www.apple.com/iphone/accessories/"><img src="../lighter/images/iphone_galleryaccess_20070628.jpg" alt="iPhone accessories" height="176" width="178"></a><br />
+    			  Apple accessories help you get the most out of your iPhone. <a href="http://www.apple.com/iphone/accessories/" class="more">Find out more</a>
+		        </p>
+		      </div>
+			</div>
+		</div>
+	</div>
+
+    <div class="moreinfo">
+    	<p>Consectetuer adipiscing elit. Maecenas sit amet metus. Nunc quam elit, posuere nec, auctor in, rhoncus quis, dui. Aliquam erat volutpat. Ut dignissim, massa sit amet dignissim cursus, quam lacus feugiat.Consectetuer adipiscing elit. Maecenas sit amet metus. Nunc quam elit, posuere nec, auctor in, rhoncus quis, dui. </p>
+        <p>Consectetuer adipiscing elit. Maecenas sit amet metus. Nunc quam elit, posuere nec, auctor in, rhoncus quis, dui. Aliquam erat volutpat. Ut dignissim, massa sit amet dignissim cursus, quam lacus feugiat.Consectetuer adipiscing elit. Maecenas sit amet metus. Nunc quam elit, posuere nec, auctor in, rhoncus quis, dui. </p>
+        <p>Consectetuer adipiscing elit. Maecenas sit amet metus. Nunc quam elit, posuere nec, auctor in, rhoncus quis, dui. Aliquam erat volutpat. Ut dignissim, massa sit amet dignissim cursus, quam lacus feugiat.Consectetuer adipiscing elit. Maecenas sit amet metus. Nunc quam elit, posuere nec, auctor in, rhoncus quis, dui. </p>
+        <p>Consectetuer adipiscing elit. Maecenas sit amet metus. Nunc quam elit, posuere nec, auctor in, rhoncus quis, dui. Aliquam erat volutpat. Ut dignissim, massa sit amet dignissim cursus, quam lacus feugiat.Consectetuer adipiscing elit. Maecenas sit amet metus. Nunc quam elit, posuere nec, auctor in, rhoncus quis, dui. </p>
+    </div>
+
+  </div>
+
+
+
+<!-- THE EXAMPLE's CODE END HERE, FROM NOW ON IS JUST THE DOCUMENTATION //-->
+
+
+
+</div>
+</body>
+</html>

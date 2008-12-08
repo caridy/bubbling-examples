@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Bubbling Library (YUI Extension) - Accordion Menu and how to handle it from outside.</title>
+<meta name='author' content='Caridy Patino (caridy at gmail.com)' />
+<link rel="stylesheet" type="text/css" href="../assets/example.css">
+<style type="text/css">
+.myAccordion {
+  float: left;
+  margin-right: 15px;
+}
+  .myAccordion .yui-cms-accordion .yui-cms-item {
+    border: 1px solid #cccccc;
+    width: 200px;
+  }
+    .myAccordion .yui-cms-accordion .yui-cms-item h3 {
+      margin: 0px;
+    }
+        .myAccordion .yui-cms-accordion .yui-cms-item .accordionToggleItem {
+          background: url(../images/accordion.gif) no-repeat 0px 0px;
+          text-decoration: none;
+          padding-left: 20px;
+          display: block;
+        }
+        .myAccordion .yui-cms-accordion .yui-cms-item.selected .accordionToggleItem {
+          background: url(../images/accordion.gif) no-repeat 0px -100px;
+        }
+    .myAccordion .yui-cms-accordion .yui-cms-item .bd {
+        height: 0px;
+        overflow: hidden;
+        background-color: #fff;
+    }
+        .myAccordion .yui-cms-accordion .yui-cms-item .bd .fixed {
+            overflow: hidden;
+            padding: 5px;
+        }
+</style>
+<!-- Dependency source files -->
+<script type="text/javascript" src="http://yui.yahooapis.com/2.6.0/build/utilities/utilities.js"></script>
+<script type="text/javascript" src="http://js.bubbling-library.com/2.0/build/bubbling/bubbling.js"></script>
+<script type="text/javascript" src="http://js.bubbling-library.com/2.0/build/accordion/accordion.js"></script>
+</head>
+<body id="cms-body">
+<div id="doc">
+
+	<div class="path">
+	  <a href="http://www.bubbling-library.com/" target="_top">Bubbling Library</a> &gt; <a href="http://www.bubbling-library.com/eng/examples" target="_top">Examples</a>
+	</div>
+
+  <h1>Accordion Menu and how to handle it from outside (open on click)</h1>
+  <p>It's really easy to handle the states of the items using JS, you only need a reference to a DOM element within an accordion item, and you can modify the state for that particular item, collapsing or expanding it. Also you can control the accordion as a single object.</p>
+  <div class="myAccordion">
+	<p>Configuration: <code>multiple</code>, <code>fadeIn/Out</code></p>
+	<p>Actions:
+	   <a href="#" onclick="YAHOO.widget.AccordionManager.expand('mylist-first-accordion');">open all</a>,
+	   <a href="#" onclick="YAHOO.widget.AccordionManager.collapse('mylist-first-accordion');">close all</a>,
+	   <a href="#" onclick="YAHOO.widget.AccordionManager.toggle('mylist-first-element');">toogle the first item</a>
+	</p>
+	<div class="yui-cms-accordion multiple fade fixIE" id="mylist-first-accordion">
+		<div class="yui-cms-item" id="mylist-first-element">
+		    <h3><a href="#" class="accordionToggleItem" title="click to expand">Accessories</a></h3>
+		    <div class="bd">
+		      <div class="fixed">
+		        <p>
+    			  <a href="http://www.apple.com/iphone/accessories/"><img src="../lighter/images/iphone_galleryaccess_20070628.jpg" alt="iPhone accessories" class="photo" height="176" width="178"></a>
+    			  Apple accessories help you get the most out of your iPhone. <a href="http://www.apple.com/iphone/accessories/" class="more">Find out more</a>
+		        </p>
+		      </div>
+			</div>
+		</div>
+		<div class="yui-cms-item">
+		    <h3><a href="#" class="accordionToggleItem" title="click to expand">Photos</a></h3>
+		    <div class="bd">
+		      <div class="fixed">
+		        <p>
+    			  <a href="http://www.apple.com/iphone/gallery/"><img src="../lighter/images/iphone_galleryphotos_20070622.jpg" alt="iPhone w/ earbuds" class="photo" height="180" width="178"></a>
+    			  No matter how you look at it, the iPhone design is incredible. <a href="http://www.apple.com/iphone/gallery/" class="more">View photos</a>
+		        </p>
+		      </div>
+			</div>
+		</div>
+		<div class="yui-cms-item">
+		    <h3><a href="#" class="accordionToggleItem" title="click to expand">360 View</a></h3>
+		    <div class="bd">
+		      <div class="fixed">
+		        <p>
+    			  <a href="http://www.apple.com/iphone/gallery/360/"><img src="../lighter/images/iphone_gallery360s_20070622.jpg" alt="iPhone with earbuds" class="photo" height="180" width="178"></a>
+    			  Want to take iPhone for a spin? <a href="http://www.apple.com/iphone/gallery/360/" class="more">Watch this</a>
+		        </p>
+		      </div>
+			</div>
+		</div>
+		<div class="yui-cms-item">
+		    <h3><a href="#" class="accordionToggleItem" title="click to expand">TV Ads</a></h3>
+		    <div class="bd">
+		      <div class="fixed">
+		        <p>
+    			  <a href="http://www.apple.com/iphone/ads/"><img src="../lighter/images/iphone_galleryads_20070622.jpg" alt="iPhone w/ earbuds" class="photo" height="180" width="178"></a>
+    			  iPhone shows what it can do in these TV commercials. <a href="http://www.apple.com/iphone/ads/" class="more">View video</a>
+		        </p>
+		      </div>
+			</div>
+		</div>
+	</div>
+  </div>
+
+  <div class="myAccordion">
+	<p>Configuration: <code>multiple</code>, <code>fast</code>, <code>bounceOut</code></p>
+	<p>Actions:
+	   <a href="#" onclick="YAHOO.widget.AccordionManager.expand('mylist-second-accordion');">open all</a>,
+	   <a href="#" onclick="YAHOO.widget.AccordionManager.collapse('mylist-second-accordion');">close all</a>,
+	   <a href="#" onclick="YAHOO.widget.AccordionManager.toggle('mylist-second-element');">toogle the second item</a>
+	</p>
+	<div class="yui-cms-accordion multiple fast fixIE" rel="bounceOut" id="mylist-second-accordion">
+		<div class="yui-cms-item">
+		    <h3><a href="#" class="accordionToggleItem" title="click to expand">Accessories</a></h3>
+		    <div class="bd">
+		      <div class="fixed">
+		        <p>
+    			  <a href="http://www.apple.com/iphone/accessories/"><img src="../lighter/images/iphone_galleryaccess_20070628.jpg" alt="iPhone accessories" class="photo" height="176" width="178"></a>
+    			  Apple accessories help you get the most out of your iPhone. <a href="http://www.apple.com/iphone/accessories/" class="more">Find out more</a>
+		        </p>
+		      </div>
+			</div>
+		</div>
+		<div class="yui-cms-item selected" id="mylist-second-element">
+		    <h3><a href="#" class="accordionToggleItem" title="click to expand">Photos</a></h3>
+		    <div class="bd" style="height: auto;">
+		      <div class="fixed">
+		        <p>
+    			  <a href="http://www.apple.com/iphone/gallery/"><img src="../lighter/images/iphone_galleryphotos_20070622.jpg" alt="iPhone w/ earbuds" class="photo" height="180" width="178"></a>
+    			  No matter how you look at it, the iPhone design is incredible. <a href="http://www.apple.com/iphone/gallery/" class="more">View photos</a>
+		        </p>
+		      </div>
+			</div>
+		</div>
+		<div class="yui-cms-item">
+		    <h3><a href="#" class="accordionToggleItem" title="click to expand">360 View</a></h3>
+		    <div class="bd">
+		      <div class="fixed">
+		        <p>
+    			  <a href="http://www.apple.com/iphone/gallery/360/"><img src="../lighter/images/iphone_gallery360s_20070622.jpg" alt="iPhone with earbuds" class="photo" height="180" width="178"></a>
+    			  Want to take iPhone for a spin? <a href="http://www.apple.com/iphone/gallery/360/" class="more">Watch this</a>
+		        </p>
+		      </div>
+			</div>
+		</div>
+		<div class="yui-cms-item">
+		    <h3><a href="#" class="accordionToggleItem" title="click to expand">TV Ads</a></h3>
+		    <div class="bd">
+		      <div class="fixed">
+		        <p>
+    			  <a href="http://www.apple.com/iphone/ads/"><img src="../lighter/images/iphone_galleryads_20070622.jpg" alt="iPhone w/ earbuds" class="photo" height="180" width="178"></a>
+    			  iPhone shows what it can do in these TV commercials. <a href="http://www.apple.com/iphone/ads/" class="more">View video</a>
+		        </p>
+		      </div>
+			</div>
+		</div>
+	</div>
+  </div>
+
+
+
+<!-- THE EXAMPLE's CODE END HERE, FROM NOW ON IS JUST THE DOCUMENTATION //-->
+
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>Bubbling Library (YUI Extension) - Drag and Drop Panels + Accordion Control</title>
+<meta name='author' content='Caridy Patino (caridy at gmail.com)' />
+<link rel="stylesheet" type="text/css" href="../assets/example.css" />
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.6.0/build/container/assets/skins/sam/container.css" />
+<link rel="stylesheet" type="text/css" href="http://js.bubbling-library.com/2.0/build/accordion/assets/accordion.css" />
+<style type="text/css">
+
+.multicolumns {
+  width: 860px;
+}
+     .multicolumns .yui-cms-group {
+        width: 31%;
+        float: left;
+        padding: 5px;
+        margin: 5px;
+        background-color: #efefef;
+        min-height: 400px;
+        *height: 400px;
+     }
+         .multicolumns .yui-cms-accordion .yui-cms-item {
+            margin-bottom: 5px;
+         }
+             .multicolumns .yui-cms-accordion .yui-cms-item.yui-panel .hd,
+             .multicolumns .yui-cms-accordion .yui-cms-item.yui-panel .actions {
+                cursor: move;
+             }
+</style>
+<!-- Dependency source files -->
+<script type="text/javascript" src="http://yui.yahooapis.com/2.6.0/build/utilities/utilities.js"></script>
+<script type="text/javascript" src="http://js.bubbling-library.com/2.0/build/bubbling/bubbling.js"></script>
+<script type="text/javascript" src="http://js.bubbling-library.com/2.0/build/accordion/accordion.js"></script>
+<script type="text/javascript">
+(function() {
+
+var Dom = YAHOO.util.Dom;
+var Event = YAHOO.util.Event;
+var DDM = YAHOO.util.DragDropMgr;
+
+//////////////////////////////////////////////////////////////////////////////
+// example app
+//////////////////////////////////////////////////////////////////////////////
+YAHOO.example.DDApp = {
+    init: function() {
+        var el = Dom.get('ddGroup');
+        if (el) {
+            // walking thru the targable elements...
+            Dom.batch (Dom.getElementsByClassName('yui-cms-group','div',el), function(elem){
+                // adding an item to the list...
+                var DDItem = new YAHOO.util.DDTarget(elem);
+            });
+            // walking thru the dragable elements...
+            Dom.batch (Dom.getElementsByClassName('yui-cms-item','div',el), function(elem){
+                // adding an item to the list...
+                var DDItem = new YAHOO.example.DDList(elem);
+            });
+        }
+    }
+};
+
+//////////////////////////////////////////////////////////////////////////////
+// custom drag and drop implementation
+//////////////////////////////////////////////////////////////////////////////
+YAHOO.example.DDList = function(id, sGroup, config) {
+    YAHOO.example.DDList.superclass.constructor.call(this, id, sGroup, config);
+};
+YAHOO.extend(YAHOO.example.DDList, YAHOO.util.DDProxy, {
+
+    startDrag: function(x, y) {
+        // make the source transparent...
+        var dragEl = this.getDragEl();
+        var clickEl = this.getEl();
+        Dom.setStyle(clickEl, "opacity", 0.3);
+    },
+
+    endDrag: function(e) {
+        var srcEl = this.getEl();
+        var proxy = this.getDragEl();
+        // Show the proxy element and animate it to the src element's location
+        Dom.setStyle(proxy, "visibility", "");
+        // restoring the opacity
+        Dom.setStyle(srcEl, "opacity", 1);
+        var a = new YAHOO.util.Motion(
+            proxy, {
+                points: {
+                    to: Dom.getXY(srcEl)
+                }
+            },
+            0.2,
+            YAHOO.util.Easing.easeOut
+        )
+        var proxyid = proxy.id;
+        var thisid = this.id;
+        // Hide the proxy and show the source element when finished with the animation
+        a.onComplete.subscribe(function() {
+                Dom.setStyle(proxyid, "visibility", "hidden");
+                Dom.setStyle(thisid, "visibility", "");
+            });
+        a.animate();
+    },
+
+    onDragDrop: function(e, id) {
+        var srcEl = this.getEl();
+        var destEl = Dom.get(id);
+
+        // If there is one drop interaction, the li was dropped either on the list,
+        // or it was dropped on the current location of the source element.
+        if (DDM.interactionInfo.drop.length === 1) {
+
+            // The position of the cursor at the time of the drop (YAHOO.util.Point)
+            var pt = DDM.interactionInfo.point;
+
+            // The region occupied by the source element at the time of the drop
+            var region = DDM.interactionInfo.sourceRegion;
+
+            // Check to see if we are over the source element's location.  We will
+            // append to the bottom of the list once we are sure it was a drop in
+            // the negative space (the area of the list without any list items)
+            if (!region.intersect(pt)) {
+                var destDD = DDM.getDDById(id);
+                destEl.appendChild(this.getEl());
+                destDD.isEmpty = false;
+                DDM.refreshCache();
+            }
+
+        } else {
+            // We are only concerned with list items, we ignore the DragDrop
+            // notifications for the list.
+            if (destEl = YAHOO.Bubbling.getOwnerByClassName(destEl, 'yui-cms-item')) {
+                // the element was dropped over an existed element
+                var p = destEl.parentNode;
+                var b = false;
+                Dom.batch (Dom.getElementsByClassName('yui-cms-item','div',p), function(elem){
+                    if (!b) {
+                        if (elem === destEl) {
+                            p.insertBefore(srcEl, destEl); // insert above
+                            DDM.refreshCache();
+                            b = true;
+                        } else if (elem === srcEl) {
+                            p.insertBefore(srcEl, destEl.nextSibling); // insert below
+                            DDM.refreshCache();
+                            b = true;
+                        }
+                    }
+                });
+            }
+        }
+    }
+
+});
+
+Event.onDOMReady(YAHOO.example.DDApp.init, YAHOO.example.DDApp, true);
+
+})();
+</script>
+</head>
+<body id="cms-body" class="yui-skin-sam">
+<div id="doc">
+
+	<div class="path">
+	  <a href="http://www.bubbling-library.com/" target="_top">Bubbling Library</a> &gt; <a href="http://www.bubbling-library.com/eng/examples" target="_top">Examples</a>
+	</div>
+
+  <h1>Accordion Panels: Using Drag and Drop to Reorder the Panels</h1>
+  <p>In this example, we used the YUI Drag and Drop utility and the YUI Container Skin to create accordion items and these items can be drag and drop between different accordion instances.</p>
+  <div class="multicolumns">
+    <p>Configuration: <code>multiple</code>, <code>fast</code></p>
+	<div id="ddGroup" class="yui-cms-accordion multiple fast fixIE">
+	  <div class="yui-cms-group">
+	    <div class="yui-cms-item yui-panel">
+            <div class="hd">Accessories</div>
+            <div class="bd">
+              <div class="fixed">
+		        <p>
+    			  <a href="http://www.apple.com/iphone/accessories/"><img src="../lighter/images/iphone_galleryaccess_20070628.jpg" alt="iPhone accessories" class="photo" height="176" width="178"></a><br />
+    			  Apple accessories help you. <a href="http://www.apple.com/iphone/accessories/" class="more">Find out more</a>
+		        </p>
+		      </div>
+            </div>
+            <div class="actions">
+		      <a href="#" class="accordionToggleItem">&nbsp;</a>
+              <a href="#" class="accordionRemoveItem">&nbsp;</a>
+		    </div>
+        </div>
+	    <div class="yui-cms-item yui-panel">
+            <div class="hd">Photos</div>
+            <div class="bd">
+              <div class="fixed">
+		        <p>Consectetuer adipiscing elit. Maecenas sit amet metus. Nunc quam elit, posuere nec, auctor in, rhoncus quis, dui. Aliquam erat volutpat. Ut dignissim, massa sit amet dignissim cursus, quam lacus feugiat.Consectetuer adipiscing elit. Maecenas sit amet metus. Nunc quam elit, posuere nec, auctor in, rhoncus quis, dui. </p>
+		        <p>Consectetuer adipiscing elit. Maecenas sit amet metus. Nunc quam elit, posuere nec.</p>
+		      </div>
+            </div>
+            <div class="actions">
+		      <a href="#" class="accordionToggleItem">&nbsp;</a>
+              <a href="#" class="accordionRemoveItem">&nbsp;</a>
+		    </div>
+        </div>
+	  </div>
+	  <div class="yui-cms-group">
+	    <div class="yui-cms-item yui-panel">
+            <div class="hd">360 View</div>
+            <div class="bd">
+              <div class="fixed">
+		        <p>
+    			  <a href="http://www.apple.com/iphone/gallery/360/"><img src="../lighter/images/iphone_gallery360s_20070622.jpg" alt="iPhone with earbuds" class="photo" height="180" width="178"></a><br />
+    			  Want to take iPhone for a spin? <a href="http://www.apple.com/iphone/gallery/360/" class="more">Watch this</a>
+		        </p>
+		      </div>
+            </div>
+            <div class="actions">
+		      <a href="#" class="accordionToggleItem">&nbsp;</a>
+              <a href="#" class="accordionRemoveItem">&nbsp;</a>
+		    </div>
+        </div>
+	    <div class="yui-cms-item yui-panel">
+            <div class="hd">Panel Label 1</div>
+            <div class="bd">
+              <div class="fixed">
+		        <p>Consectetuer adipiscing elit. Maecenas sit amet metus. Nunc quam elit, posuere nec, auctor in, rhoncus quis, dui. Aliquam erat volutpat. Ut dignissim, massa sit amet dignissim cursus, quam lacus feugiat.Consectetuer adipiscing elit. Maecenas sit amet metus. Nunc quam elit, posuere nec, auctor in, rhoncus quis, dui. </p>
+		      </div>
+            </div>
+            <div class="actions">
+		      <a href="#" class="accordionToggleItem">&nbsp;</a>
+              <a href="#" class="accordionRemoveItem">&nbsp;</a>
+		    </div>
+        </div>
+	  </div>
+	  <div class="yui-cms-group">
+	    <div class="yui-cms-item yui-panel">
+            <div class="hd">Panel Label 2</div>
+            <div class="bd">
+              <div class="fixed">
+		        <p>Consectetuer adipiscing elit. Maecenas sit amet metus. Nunc quam elit, posuere nec, auctor in, rhoncus quis, dui. Aliquam erat volutpat. Ut dignissim, massa sit amet dignissim cursus, quam lacus feugiat.Consectetuer adipiscing elit. Maecenas sit amet metus. Nunc quam elit, posuere nec, auctor in, rhoncus quis, dui. </p>
+		      </div>
+            </div>
+            <div class="actions">
+		      <a href="#" class="accordionToggleItem">&nbsp;</a>
+              <a href="#" class="accordionRemoveItem">&nbsp;</a>
+		    </div>
+        </div>
+	    <div class="yui-cms-item yui-panel">
+            <div class="hd">TV Ads</div>
+            <div class="bd">
+              <div class="fixed">
+		        <p>
+    			  <a href="http://www.apple.com/iphone/ads/"><img src="../lighter/images/iphone_galleryads_20070622.jpg" alt="iPhone w/ earbuds" class="photo" height="180" width="178"></a><br />
+    			  iPhone shows what it can do in these TV commercials. <a href="http://www.apple.com/iphone/ads/" class="more">View video</a>
+		        </p>
+		      </div>
+            </div>
+            <div class="actions">
+		      <a href="#" class="accordionToggleItem">&nbsp;</a>
+              <a href="#" class="accordionRemoveItem">&nbsp;</a>
+		    </div>
+        </div>
+	  </div>
+	</div>
+  </div>
+
+
+
+<!-- THE EXAMPLE's CODE END HERE, FROM NOW ON IS JUST THE DOCUMENTATION //-->
+
+
+
+</div>
+</body>
+</html>
